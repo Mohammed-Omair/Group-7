@@ -8,6 +8,7 @@ if not firebase_admin._apps:
 
 db = firestore.client()
 
+#prevous question function 
 def prev_ques(email):
    return db.collection(email).stream()
 
