@@ -5,6 +5,7 @@ from push_to_firestore import write_to_firestore, prev_ques
 import json
 import os
 email = None
+answer_api_url = "https://group-7-dwzravq3tq-uc.a.run.app/?question="
 ## -------------------------------------------------------------------------------------------------
 ## Not logged in -----------------------------------------------------------------------------------
 ## -------------------------------------------------------------------------------------------------
@@ -92,6 +93,26 @@ else:
 
         # Display the similarity score
         st.write("Similarity score:", similarity_score)
+
+         # Check if similarity is greater than 50%
+        if similarity_score > 0.5:
+            # Get answers from the API based on the first question
+            answer_response = requests.get(answer_api_url + text1)
+            answer = answer_response.json().get("summary")
+
+            # Display the answer
+            st.write("Answer:", answer)
+        else:
+            # Get answers for both questions
+            answer_response_text1 = requests.get(answer_api_url + text1)
+            answer_response_text2 = requests.get(answer_api_url + text2)
+
+            answer_text1 = answer_response_text1.json().get("summary")
+            answer_text2 = answer_response_text2.json().get("summary")
+
+            # Display answers for both questions
+            st.write("Answer for Question 1:", answer_text1)
+            st.write("Answer for Question 2:", answer_text2)
 
         # Pushing data to Firestore
         previous_questions = write_to_firestore(text1, text2, similarity_score, email)
