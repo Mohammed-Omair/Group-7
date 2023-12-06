@@ -12,6 +12,7 @@ db = firestore.client()
 def prev_ques(email):
    return db.collection(email).stream()
 
+#storing questions in firestore
 def write_to_firestore(text1, text2, similarity_score, email):
   
 
