@@ -93,7 +93,7 @@ def sign_in(email:str, password:str) -> None:
         print(error)
         st.session_state.auth_warning = 'Error: Please try again later'
 
-## verifiying mail 
+## verifiying mail function
 def create_account(email:str, password:str) -> None:
     try:
         # Create account (and save id_token)
