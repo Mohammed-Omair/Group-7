@@ -1,0 +1,272 @@
+
+
+
+\documentclass[a4paper,10pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,0}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{Mohammed Omair Mohiuddin}}
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    469-774-3039 | \href{mailto:mohammedomair07@gmail.com}{mohammedomair07@gmail.com} | 
+    \href{https://mohdomair.netlify.app/}{mohdomair.netlify.app/}
+    }
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/mohammed-omair/}{linkedin.com/in/mohammed-omair/} | 
+    \socialicon{\faGithub} \href{https://github.com/Mohammed-Omair}{github.com/Mohammed-Omair}
+    }
+\end{center}
+
+\vspace{-4mm}
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{University of Texas at Arlington}{Arlington, U.S}
+{Master of Science in Computer Science}{May 2025}
+\resumeItemListStart
+\item GPA: 4.00/4.00
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+ \resumeHeadingSkillStart
+  \resumeSubItem{Frontend Development:}
+    {UI Frameworks (e.g., React, Angular, Vue), Usability Testing}
+  \resumeSubItem{API Integration:}
+    {RESTful APIs, GraphQL, JSON, API Documentation}
+  \resumeSubItem{Certifications:}
+    {{\href{https://www.credly.com/badges/4f2aa431-8ed9-4b9d-b438-3035ef2f9587/public_url}{Certified Kubernetes Administrator}}, {\href{https://www.credly.com/badges/d963c559-4088-49eb-8046-a8d314ef4a8a/public_url}{Linux Foundation Certified Systems Administrator}}, {\href{https://www.credly.com/badges/42af9d96-f66b-48ad-a771-5448d22b3b47/public_url}{HashiCorp Certified: Terraform Associate}}, {\href{https://www.credly.com/badges/c8ed5fc8-7ae0-4e7e-8b24-c97279288ab5/public_url}{AWS Certified Solutions Architect – Associate}}}
+ \resumeHeadingSkillEnd
+%End of skills section
+
+\section{\textbf{Experience}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+  \resumeSubheading
+      {Capgemini}{Remote}
+      {UI Technical Lead}{Apr 2021 - Apr 2023}
+      \resumeItemListStart
+        \item Led a cross-functional UI team (UX designers, UI engineers, graphic designers) to deliver the Pavillio portal for mobile nurses, running agile ceremonies, owning roadmap and releases, and improving delivery cadence by ~30\% through prioritized sprints and CI-driven deployments
+        \item Architected a modular, portal-style UI framework and pluggable module API patterns to integrate core Cashe services (Cashe Billing, Analytics, Communication, Exchange V2, Careplan, Claims Processing, EDI, EVV v2, DB Migration, Exports, Salsa on EC2, Spa UI/Dashboard/Subscription), enabling independent module development and zero-downtime UI rollouts using \textbf{React, TypeScript, Module Federation}
+        \item Designed and implemented a reusable design system and component library (documented in \textbf{Storybook}) with standardized tokens, accessibility (WCAG) guidelines, and responsive patterns, reducing new feature build time by ~40\% and ensuring visual/interaction consistency across Pavillio web modules
+        \item Partnered closely with clients, product management, usability experts and the UI team to drive user-centric research and run iterative usability evaluations across development stages; translated findings into prioritized UX improvements that increased first-time task completion and lowered support tickets
+        \item Defined and enforced UI QA and delivery processes — introduced automated unit/integration/e2e testing with \textbf{Jest, React Testing Library, Cypress} and CI pipelines on \textbf{GitHub Actions}; established API contract checks with backend teams and mentored engineers on testing and accessibility best practices
+      \resumeItemListEnd 
+\resumeSubHeadingListEnd
+%End of experience section
+
+\vspace{-6mm}
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {Enterprise Portal UI Framework}
+  {React, TypeScript, Storybook, Micro-Frontend (single-spa), Design Tokens, WCAG Accessibility, RESTful APIs, Jest, Cypress, CI/CD}
+  {}
+  {}
+\resumeItemListStart
+  \item Led design and implementation of a modular, pluggable portal UI framework for enterprise clients, defining component contracts, theming via design tokens, and micro-frontend boundaries to enable independent feature deployments.
+  \item Established component documentation and Storybook-driven QA, integrated automated visual regression and accessibility (WCAG) checks into CI/CD, improving release reliability and cross-team adoption.
+\resumeItemListEnd
+
+\resumeProject
+  {Design System & Component Library}
+  {Figma, React, TypeScript, Storybook, Monorepo (Lerna/Yarn Workspaces), NPM Packages, Accessibility, Governance}
+  {}
+  {}
+\resumeItemListStart
+  \item Built an enterprise design system in collaboration with UX designers and usability experts—created reusable components, design tokens, and contribution guidelines to ensure consistency across portals and products.
+  \item Drove adoption through workshops, published versioned releases and component changelogs, and defined governance and testing processes to maintain UX quality and accelerate delivery across teams.
+\resumeItemListEnd
+
+\resumeProject
+  {User Research & Usability Testing Platform}
+  {Node.js, Express, PostgreSQL, Cypress, Hotjar, Google Analytics, Moderated/Unmoderated Testing, A/B Testing, UX Research}
+  {}
+  {}
+\resumeItemListStart
+  \item Designed and delivered a lightweight platform to manage user studies, recruit participants, run moderated/unmoderated tests and aggregate qualitative/quantitative findings to inform UI decisions.
+  \item Incorporated UX metrics and test results into product backlog prioritization and design iterations, reducing rework by improving early-stage validation and aligning stakeholders on user-centric outcomes.
+\resumeItemListEnd
+
+\resumeProject
+  {Portal Modernization with Micro-Frontends}
+  {React, TypeScript, single-spa, Docker, Kubernetes, REST/gRPC APIs, Performance Profiling, Canary Releases, Automated QA}
+  {}
+  {}
+\resumeItemListStart
+  \item Led migration of a monolithic portal to a micro-frontend architecture, defining technical architecture, module interfaces, and API contracts to enable independent delivery by multiple UI teams.
+  \item Implemented CI/CD pipelines, canary deployments, and end-to-end/visual tests; collaborated with product management and designers to ensure usability, performance budgets, and smooth rollouts.
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+%End of projects section
+\vspace{-6mm}
+
+
+
+
+\end{document}
