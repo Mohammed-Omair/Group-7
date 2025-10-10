@@ -1,0 +1,272 @@
+
+
+
+\documentclass[a4paper,10pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,0}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{Mohammed Omair Mohiuddin}}
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    469-774-3039 | \href{mailto:mohammedomair07@gmail.com}{mohammedomair07@gmail.com} | 
+    \href{https://mohdomair.netlify.app/}{mohdomair.netlify.app/}
+    }
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/mohammed-omair/}{linkedin.com/in/mohammed-omair/} | 
+    \socialicon{\faGithub} \href{https://github.com/Mohammed-Omair}{github.com/Mohammed-Omair}
+    }
+\end{center}
+
+\vspace{-4mm}
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{University of Texas at Arlington}{Arlington, U.S}
+{Master of Science in Computer Science}{May 2025}
+\resumeItemListStart
+\item GPA: 4.00/4.00
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+ \resumeHeadingSkillStart
+  \resumeSubItem{Programming Languages:}
+    {Python}
+  \resumeSubItem{Infrastructure \& Cloud:}
+    {GCP, Terraform, Infrastructure as Code, Docker, Kubernetes}
+  \resumeSubItem{Machine Learning Deployment:}
+    {ML deployment, Docker, Kubernetes, GCP}
+  \resumeSubItem{Certifications:}
+    {{\href{https://www.credly.com/badges/4f2aa431-8ed9-4b9d-b438-3035ef2f9587/public_url}{Certified Kubernetes Administrator}}, {\href{https://www.credly.com/badges/d963c559-4088-49eb-8046-a8d314ef4a8a/public_url}{Linux Foundation Certified Systems Administrator}}, {\href{https://www.credly.com/badges/42af9d96-f66b-48ad-a771-5448d22b3b47/public_url}{HashiCorp Certified: Terraform Associate}}, {\href{https://www.credly.com/badges/c8ed5fc8-7ae0-4e7e-8b24-c97279288ab5/public_url}{AWS Certified Solutions Architect – Associate}}}
+ \resumeHeadingSkillEnd
+
+\section{\textbf{Experience}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+  \resumeSubheading
+      {Softwise Solutions — Pavillio}{Remote}
+      {SRE / ML Infrastructure Engineer}{Apr 2021 - Apr 2023}
+      \resumeItemListStart
+        \item Owned production reliability for the Pavillio platform used by mobile nurses, managing availability and incident response across >10 microservices (Cashe Analytics, Billing, Communication, Exchange V2, Careplan, Claims Processing, EVV v2, DB Migration, Pavillio Salsa, Cashe Exports, Cashe Spa UI/Dashboard/Subscription); defined SLOs and reduced MTTR by \textbf{~40\%} while improving availability to \textbf{99.95\%}
+        \item Built and maintained CI/CD for Python-based services (Cashe APIs and web modules) using \textbf{Jenkins} and \textbf{GitHub Actions}; containerized with \textbf{Docker} and implemented blue/green and canary rollouts on \textbf{Kubernetes/EKS} via \textbf{Helm}, increasing release velocity by \textbf{35\%} and enabling zero-downtime deploys
+        \item Implemented Infrastructure-as-Code using reusable \textbf{Terraform} modules to provision networking, IAM, compute and orchestration (AWS VPC, EC2, ALB, EKS) while designing GCP-compatible patterns for cloud portability; reduced environment spin-up time by \textbf{70\%}
+        \item Deployed and optimized production ML/voice inference pipelines (lightweight TTS/analytics features) in containers on Kubernetes, introducing autoscaling, resource tuning, and caching layers to improve p99 latency by \textbf{~50\%} and increase throughput \textbf{3x}
+        \item Built observability and diagnostics tooling (centralized logging with \textbf{CloudWatch/ELK}, metrics and alerting with \textbf{Prometheus}, \textbf{Grafana}, and \textbf{Datadog}, distributed tracing) and created dashboards and load-testing workflows to identify bottlenecks and remediate high-impact instability sources
+      \resumeItemListEnd 
+\resumeSubHeadingListEnd
+
+\vspace{-6mm}
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {TTS Inference Serving Platform}
+  {Python, TensorFlow/PyTorch, Docker, Kubernetes (GKE), GCP, GPU Node Pools, gRPC, OpenTelemetry, Prometheus, Terraform, GitHub Actions}
+  {}
+  {}
+\resumeItemListStart
+  \item Designed and deployed a containerized TTS inference platform on GKE with GPU node pools, HPA, and canary releases; implemented model versioning and automated rollbacks via GitHub Actions + Terraform, reducing median request latency by ~40\% and achieving 99.9\% availability under production load.
+  \item Built full observability (Prometheus/Grafana/OpenTelemetry) and SLO-based alerting, created dashboards and runbooks that lowered incident MTTR by ~65\% and surfaced bottlenecks for continued optimization.
+\resumeItemListEnd
+
+\resumeProject
+  {Real-time Audio Preprocessing & Streaming Pipeline}
+  {Python, FastAPI, gRPC, Redis, Cloud Pub/Sub, WebSockets, FFmpeg, Docker, Cloud Run, AsyncIO}
+  {}
+  {}
+\resumeItemListStart
+  \item Implemented an asynchronous streaming preprocessing service for chunking, normalization, and noise suppression to support sub-100ms end-to-end latency for 95\% of requests; used Redis and Pub/Sub for buffering and backpressure handling to maintain stability at scale.
+  \item Exposed low-latency gRPC/WebSocket endpoints and published client SDKs; authored synthetic load tests (Locust) and tuned concurrency to increase throughput 3x while reducing dropped frames under burst traffic.
+\resumeItemListEnd
+
+\resumeProject
+  {gRPC-Based Multi-Threaded Inference Gateway}
+  {Python, Go, gRPC, AsyncIO, Docker, Kubernetes, NATS (messaging), Load Balancing, API Development}
+  {}
+  {}
+\resumeItemListStart
+  \item Built a multi-threaded gateway that aggregates and batches incoming TTS requests, fans out to model replicas, and performs adaptive batching to improve GPU utilization—reducing per-request compute cost by ~35\%.
+  \item Containerized the gateway and deployed it to Kubernetes with readiness/liveness probes, rolling updates, and circuit breakers; integrated metrics and tracing to enable rapid root-cause analysis and smooth rollouts with zero-downtime deployments.
+\resumeItemListEnd
+
+\resumeProject
+  {ModelOps Pipeline for Continuous TTS Deployment}
+  {Python, MLflow, Seldon/TF-Serving, Docker, Terraform, GCP (GCS, Cloud Build), CI/CD, Prometheus}
+  {}
+  {}
+\resumeItemListStart
+  \item Built an end-to-end ModelOps pipeline that registers, validates (latency/quality), benchmarks, and promotes TTS model versions automatically to staging/production using CI gates, preventing regressions and shortening release cycles from days to hours.
+  \item Integrated automated benchmark harness across GPU/CPU targets and implemented cost-aware rollout policies, enabling data-driven deployments and reducing infrastructure spend by ~25\% while maintaining latency SLAs.
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+%End of projects section
+\vspace{-6mm}
+
+
+
+
+\end{document}
