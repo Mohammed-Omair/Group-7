@@ -1,0 +1,274 @@
+
+
+
+\documentclass[a4paper,10pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,0}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{Mohammed Omair Mohiuddin}}
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    469-774-3039 | \href{mailto:mohammedomair07@gmail.com}{mohammedomair07@gmail.com} | 
+    \href{https://mohdomair.netlify.app/}{mohdomair.netlify.app/}
+    }
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/mohammed-omair/}{linkedin.com/in/mohammed-omair/} | 
+    \socialicon{\faGithub} \href{https://github.com/Mohammed-Omair}{github.com/Mohammed-Omair}
+    }
+\end{center}
+
+\vspace{-4mm}
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{University of Texas at Arlington}{Arlington, U.S}
+{Master of Science in Computer Science}{May 2025}
+\resumeItemListStart
+\item GPA: 4.00/4.00
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+ \resumeHeadingSkillStart
+  \resumeSubItem{Programming Languages:}
+    {C, C++, Python}
+  \resumeSubItem{Operating Systems:}
+    {Linux}
+  \resumeSubItem{Networking:}
+    {BGP, IS-IS, OSPF, PIM, RSVP, EVPN, Segment Routing}
+  \resumeSubItem{Certifications:}
+    {{\href{https://www.credly.com/badges/4f2aa431-8ed9-4b9d-b438-3035ef2f9587/public_url}{Certified Kubernetes Administrator}}, {\href{https://www.credly.com/badges/d963c559-4088-49eb-8046-a8d314ef4a8a/public_url}{Linux Foundation Certified Systems Administrator}}, {\href{https://www.credly.com/badges/42af9d96-f66b-48ad-a771-5448d22b3b47/public_url}{HashiCorp Certified: Terraform Associate}}, {\href{https://www.credly.com/badges/c8ed5fc8-7ae0-4e7e-8b24-c97279288ab5/public_url}{AWS Certified Solutions Architect – Associate}}}
+ \resumeHeadingSkillEnd
+%End of skills section
+
+\section{\textbf{Experience}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+  \resumeSubheading
+      {Softwise Solutions}{Remote}
+      {Senior Software Engineer --- Routing \& Distributed Systems}{Apr 2021 - Apr 2023}
+      \resumeItemListStart
+        \item Architected and implemented the scalable, low-latency backend for the Pavillio mobile-nurse platform, developing and optimizing multiple Cashe microservices (Cashe Billing, Cashe Claims Processing, Cashe EVV v2, Cashe EDI) on Linux using \textbf{C/C++} and \textbf{Python}, improving API throughput and reducing request tail latency in production
+        \item Designed and delivered programmable RPC/REST APIs and SDKs for inter-service routing and state propagation across Cashe Exchange V2, Cashe Careplan and Spa modules; implemented streaming telemetry and real-time event routing using \textbf{gRPC} / \textbf{REST} to enable deterministic service-state visibility
+        \item Authored functional specifications and comprehensive test plans, built automated integration/system test harnesses in \textbf{Python} and containerized environments, and integrated end-to-end tests into CI/CD pipelines with \textbf{Jenkins} and \textbf{GitHub Actions}, reducing regressions and accelerating releases
+        \item Led production troubleshooting and performance tuning for EC2-hosted components (Pavillio Salsa, Cashe Exports), applying kernel/TCP optimizations, connection management and observability using \textbf{Prometheus}, \textbf{Grafana}, and \textbf{Datadog} to rapidly isolate routing/throughput anomalies
+        \item Provided technical leadership across feature delivery: mentored engineers, collaborated with SRE/support to resolve customer-impacting incidents, and applied protocol-design and distributed-systems principles (state machines, convergence, retries/backoff) to reliably deliver features for large-scale cloud and data-center environments
+      \resumeItemListEnd 
+\resumeSubHeadingListEnd
+%End of experience section
+
+\vspace{-6mm}
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {High-Performance BGP \& OSPF Control Plane}
+  {C, C++, Python, Linux, BGP, OSPF, RIB/FIB, gRPC, Unit Testing, CI}
+  {}
+  {}
+\resumeItemListStart
+  \item Architected and implemented core control-plane components (adjacency management, route processing, RIB/FIB interactions) in C/C++ with Python test harnesses to validate correctness under scale and failure conditions
+  \item Developed automated test suites and CI pipelines to run functional, regression and fault-injection tests; validated protocol convergence and stability across large simulated topologies
+\resumeItemListEnd
+
+\resumeProject
+  {gRPC-Based Multi-Threaded Routing Services}
+  {C++, Python, gRPC, Multi-threading, Docker, IPC, Netlink, Integration Testing}
+  {}
+  {}
+\resumeItemListStart
+  \item Designed and implemented a multithreaded gRPC control-plane service framework to expose routing/telemetry APIs, enabling asynchronous processing and backpressure-safe RPC handling
+  \item Containerized services and created end-to-end integration tests that exercised API-driven feature flows, demonstrating scalability and improving observability via structured telemetry
+\resumeItemListEnd
+
+\resumeProject
+  {Segment Routing \& EVPN Lab and Simulator}
+  {Python, Mininet, EVPN, Segment Routing, VxLAN, BGP-LS, Scapy, Test Automation}
+  {}
+  {}
+\resumeItemListStart
+  \item Built an automated emulation environment using Mininet and Python to prototype EVPN/VxLAN and Segment Routing behaviors, validating control-plane interactions and route distribution at scale
+  \item Implemented scenario-driven tests and telemetry collectors to catch regressions in label distribution and MAC/IP plane convergence, accelerating validation cycles for new feature variants
+\resumeItemListEnd
+
+\resumeProject
+  {Packet Forwarding HAL \& Data Plane Acceleration Prototype}
+  {C, C++, DPDK, Linux, P4 (evaluation), Performance Profiling, Benchmarking}
+  {}
+  {}
+\resumeItemListStart
+  \item Implemented a hardware abstraction layer prototype and user-space forwarding path using DPDK to validate offload and forwarding primitives, enabling rapid experimentation of datapath optimizations
+  \item Performed profiling and micro-benchmarking to identify bottlenecks, and iterated on memory and threading models to improve throughput and reduce latency under synthetic and real traffic mixes
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+%End of projects section
+\vspace{-6mm}
+
+
+
+
+\end{document}
