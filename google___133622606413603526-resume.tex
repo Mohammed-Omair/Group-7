@@ -1,0 +1,272 @@
+
+
+
+\documentclass[a4paper,10pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,0}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{Mohammed Omair Mohiuddin}}
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    469-774-3039 | \href{mailto:mohammedomair07@gmail.com}{mohammedomair07@gmail.com} | 
+    \href{https://mohdomair.netlify.app/}{mohdomair.netlify.app/}
+    }
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/mohammed-omair/}{linkedin.com/in/mohammed-omair/} | 
+    \socialicon{\faGithub} \href{https://github.com/Mohammed-Omair}{github.com/Mohammed-Omair}
+    }
+\end{center}
+
+\vspace{-4mm}
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{University of Texas at Arlington}{Arlington, U.S}
+{Master of Science in Computer Science}{May 2025}
+\resumeItemListStart
+\item GPA: 4.00/4.00
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+ \resumeHeadingSkillStart
+  \resumeSubItem{Programming Languages:}
+    {C++, Python}
+  \resumeSubItem{Artificial Intelligence:}
+    {Generative AI, Machine Learning Infrastructure}
+  \resumeSubItem{Certifications:}
+    {{\href{https://www.credly.com/badges/4f2aa431-8ed9-4b9d-b438-3035ef2f9587/public_url}{Certified Kubernetes Administrator}}, {\href{https://www.credly.com/badges/d963c559-4088-49eb-8046-a8d314ef4a8a/public_url}{Linux Foundation Certified Systems Administrator}}, {\href{https://www.credly.com/badges/42af9d96-f66b-48ad-a771-5448d22b3b47/public_url}{HashiCorp Certified: Terraform Associate}}, {\href{https://www.credly.com/badges/c8ed5fc8-7ae0-4e7e-8b24-c97279288ab5/public_url}{AWS Certified Solutions Architect – Associate}}}
+ \resumeHeadingSkillEnd
+%End of skills section
+
+\section{\textbf{Experience}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+  \resumeSubheading
+      {Softwise Solutions}{Remote}
+      {Software Engineer — ML / GenAI & Backend}{Apr 2021 - Apr 2023}
+      \resumeItemListStart
+        \item Architected and implemented scalable backend microservices for Pavillio (Cashe Billing, Cashe Claims Processing, Cashe EVV v2, Cashe Exchange V2, Cashe Spa UI/Dashboard, Cashe Exports) using \textbf{C++} and \textbf{Python}, redesigning APIs and database access patterns to reduce 95th-percentile request latency by ~30% and improve throughput for mobile nurse workflows
+        \item Built ML infrastructure for GenAI features (clinical note generation, care-suggestion ranking) including data preparation, model training/evaluation pipelines, model serving and monitoring using \textbf{PyTorch/TensorFlow}, \textbf{ONNX}, containerized model servers and automated deployment, enabling safe rollouts and automated rollback on regressions
+        \item Implemented inference optimization and evaluation tooling (A/B tests, offline metrics, slice analysis) to iterate on LLM and multi-modal models; instrumented model performance and data drift alerts to maintain production quality and reduce model-related incidents
+        \item Led integration of high-throughput data pipelines and EDI/EVV ingestion (Cashe EDI, Cashe EVV, Cashe DB Migration), designing fault-tolerant processing and migration strategies on EC2/EKS, improving end-to-end claim processing reliability and shortening reconciliation cycles
+        \item Drove engineering best practices across teams—code and design reviews, CI/CD, automated tests, and incident triage—debugging cross-service issues (network, infra, application) and improving observability with structured logging and metrics to accelerate resolution and ensure regulatory compliance
+      \resumeItemListEnd 
+\resumeSubHeadingListEnd
+%End of experience section
+
+\vspace{-6mm}
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {GenAI-Based Ad Suggestion Engine}
+  {Python, PyTorch, Transformers (LLMs), Retrieval-Augmented Generation, FAISS, FastAPI, Docker, A/B Testing, Data Processing}
+  {}
+  {}
+\resumeItemListStart
+  \item Built an end-to-end GenAI pipeline that generates advertiser suggestions by fine-tuning and serving transformer-based LLMs with RAG over advertiser historical data and metadata, including preprocessing, vectorization (FAISS), and offline/human-in-the-loop evaluation to improve suggestion relevance in production-like tests
+  \item Deployed the model as a scalable REST service (FastAPI + Docker), integrated model versioning and rollout strategies with A/B testing, and added logging/metrics for latency, quality, and fairness to enable automated rollouts and rapid iteration
+\resumeItemListEnd
+
+\resumeProject
+  {C++ High-Performance Inference Engine}
+  {C++, ONNX Runtime, Multithreading, SIMD/AVX optimizations, Quantization, Performance Profiling, CI}
+  {}
+  {}
+\resumeItemListStart
+  \item Implemented a low-latency inference runtime in C++ using ONNX Runtime and multithreading, optimized memory layout and SIMD paths to reduce p95 latency and CPU utilization for large vision and transformer models
+  \item Added an automated quantization and benchmarking pipeline, comprehensive profiling/debug tooling, and CI-based performance regression tests to ensure stability and consistent model behavior across releases
+\resumeItemListEnd
+
+\resumeProject
+  {ML Infrastructure & Deployment Platform}
+  {Python, Kubernetes, Docker, Terraform, MLflow, GitHub Actions (CI/CD), Prometheus, Grafana, Automated Evaluation}
+  {}
+  {}
+\resumeItemListStart
+  \item Designed and implemented ML infra for reproducible training, model packaging, automated evaluation, drift detection, and progressive rollouts (canary/A/B) using Terraform, Kubernetes, MLflow and CI/CD pipelines to streamline deployments
+  \item Built monitoring and alerting (Prometheus/Grafana) plus automated gates based on evaluation metrics to block rollouts when regressions or performance drift are detected, improving observability and reducing incidents during production changes
+\resumeItemListEnd
+
+\resumeProject
+  {PyGit: Version Control Implementation (Algorithms \& Data Structures)}
+  {Python, C++ extensions, File I/O, Graphs/DAGs, Delta Encoding, Testing, Performance Benchmarks}
+  {}
+  {}
+\resumeItemListStart
+  \item Developed a Git-like version control system in Python implementing commits, branching, merges, and object storage; implemented performance-critical packfile creation and delta encoding as C++ extensions to accelerate I/O-heavy operations
+  \item Designed test suites and microbenchmarks to analyze algorithmic complexity and storage efficiency, demonstrating trade-offs in memory/CPU and validating correctness for complex merge and history-rewrite scenarios
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+%End of projects section
+\vspace{-6mm}
+
+
+
+
+\end{document}
