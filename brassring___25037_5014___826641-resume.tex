@@ -1,0 +1,271 @@
+
+
+
+\documentclass[a4paper,10pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,0}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{Mohammed Omair Mohiuddin}}
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    469-774-3039 | \href{mailto:mohammedomair07@gmail.com}{mohammedomair07@gmail.com} | 
+    \href{https://mohdomair.netlify.app/}{mohdomair.netlify.app/}
+    }
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/mohammed-omair/}{linkedin.com/in/mohammed-omair/} | 
+    \socialicon{\faGithub} \href{https://github.com/Mohammed-Omair}{github.com/Mohammed-Omair}
+    }
+\end{center}
+
+\vspace{-4mm}
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{University of Texas at Arlington}{Arlington, U.S}
+{Master of Science in Computer Science}{May 2025}
+\resumeItemListStart
+\item GPA: 4.00/4.00
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+ \resumeHeadingSkillStart
+  \resumeSubItem{Programming Languages:}
+    {C, C++, C\#, Java, JavaScript, Python, Ruby}
+  \resumeSubItem{Version Control Systems:}
+    {Git, SVN, TFS}
+  \resumeSubItem{Certifications:}
+    {{\href{https://www.credly.com/badges/4f2aa431-8ed9-4b9d-b438-3035ef2f9587/public_url}{Certified Kubernetes Administrator}}, {\href{https://www.credly.com/badges/d963c559-4088-49eb-8046-a8d314ef4a8a/public_url}{Linux Foundation Certified Systems Administrator}}, {\href{https://www.credly.com/badges/42af9d96-f66b-48ad-a771-5448d22b3b47/public_url}{HashiCorp Certified: Terraform Associate}}, {\href{https://www.credly.com/badges/c8ed5fc8-7ae0-4e7e-8b24-c97279288ab5/public_url}{AWS Certified Solutions Architect – Associate}}}
+ \resumeHeadingSkillEnd
+
+\section{\textbf{Experience}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+  \resumeSubheading
+      {Softwise Solutions}{Remote}
+      {Senior Software / DevOps Engineer — Pavillio Platform}{Apr 2021 - Apr 2023}
+      \resumeItemListStart
+        \item Built, debugged, and maintained RESTful microservices for Pavillio (Cashe Billing, Cashe Communication, Cashe Exchange V2, Cashe Careplan, Cashe Claims Processing, Cashe EVV v2, Cashe Exports) using \textbf{Python} and \textbf{JavaScript}, improving API reliability and reducing average error rates in production
+        \item Implemented end-to-end CI/CD and configuration management using \textbf{Git}, \textbf{Jenkins}, and \textbf{GitHub Actions}; containerized services with \textbf{Docker} and deployed to \textbf{AWS} (EC2, EKS) via reusable \textbf{Terraform} modules to enable zero-downtime releases and a 35\% faster delivery cadence
+        \item Hardened platform security and compliance for healthcare workflows (HIPAA-relevant EDI/EVV pipelines) by enforcing secure coding practices, IAM least-privilege policies, centralized secrets with \textbf{AWS Secrets Manager}, and enhanced audit logging for sensitive transactions
+        \item Led cross-functional debugging and troubleshooting across backend, DB migration, and frontend Spa modules (Cashe Spa UI, Dashboard, Subscription), driving root-cause analyses, automated regression tests, and collaborative triage in an Agile environment
+        \item Instrumented observability and incident response using \textbf{CloudWatch}, \textbf{Prometheus}, \textbf{Grafana}, and \textbf{Datadog}; built alerting and log pipelines that reduced mean time to detect/resolve incidents and supported proactive capacity planning
+      \resumeItemListEnd 
+\resumeSubHeadingListEnd
+%End of experience section
+
+\vspace{-6mm}
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {PyGit: A Hands-On Implementation of Git}
+  {Python, File I/O, Data Structures, Version Control Algorithms, Git}
+  {}
+  {{}[\href{https://github.com/Mohammed-Omair/PyGit-A-Hands-On-Implementation-of-Git}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+  \item Implemented a lightweight Git-like version control system in Python, including commits, branching, file tracking, and a CLI to mirror common git workflows, improving understanding of distributed version control and configuration management tools
+  \item Built comprehensive unit tests and robust file-permission handling to ensure reliable operation across Linux and macOS environments and to support secure developer workflows
+\resumeItemListEnd
+
+\resumeProject
+  {gRPC-Based Multi-Threaded Secure Service}
+  {Python, C++, gRPC, Multi-threading, Docker, TLS, API Development}
+  {}
+  {{}[\href{https://github.com/Mohammed-Omair/Pet-Adoption-System-gRPC}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+  \item Developed a multi-threaded gRPC client-server system to process concurrent requests with TLS encryption and mutual authentication, focusing on secure communication and thread-safe resource management
+  \item Containerized the architecture with Docker, implemented health checks and logging, and validated concurrency correctness and resilience under load to support secure, production-like deployments
+\resumeItemListEnd
+
+\resumeProject
+  {Cloud Resume API with Secure Serverless Backend}
+  {AWS Lambda, API Gateway, DynamoDB, Terraform, GitHub Actions, CI/CD, Python, IAM}
+  {}
+  {{}[\href{https://github.com/Mohammed-Omair/Cloud-Resume-API}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+  \item Built a serverless API using AWS Lambda, API Gateway, and DynamoDB with least-privilege IAM roles and input validation to securely serve structured resume data and reduce attack surface
+  \item Designed CI/CD pipelines with GitHub Actions and Terraform to automate testing, static analysis, and secure deployments, enabling repeatable infrastructure changes and faster iteration
+\resumeItemListEnd
+
+\resumeProject
+  {Secure Static Analysis Tool for C/C++}
+  {C++, Python, Static Analysis, AST Parsing (Clang), Memory Safety, Linux, CI Integration}
+  {}
+  {}
+\resumeItemListStart
+  \item Implemented a static analysis tool using Clang AST and custom heuristics to identify common C/C++ vulnerabilities (buffer overflows, use-after-free, unsafe casts) and generate actionable findings for developers
+  \item Integrated the analyzer into CI pipelines to run on pull requests, producing automated reports and reducing risky code merges while improving secure coding practices across teams
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+%End of projects section
+\vspace{-6mm}
+
+
+
+
+\end{document}
