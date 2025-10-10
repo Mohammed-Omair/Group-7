@@ -1,0 +1,277 @@
+
+
+
+\documentclass[a4paper,10pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,0}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{Mohammed Omair Mohiuddin}}
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    469-774-3039 | \href{mailto:mohammedomair07@gmail.com}{mohammedomair07@gmail.com} | 
+    \href{https://mohdomair.netlify.app/}{mohdomair.netlify.app/}
+    }
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/mohammed-omair/}{linkedin.com/in/mohammed-omair/} | 
+    \socialicon{\faGithub} \href{https://github.com/Mohammed-Omair}{github.com/Mohammed-Omair}
+    }
+\end{center}
+
+\vspace{-4mm}
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{University of Texas at Arlington}{Arlington, U.S}
+{Master of Science in Computer Science}{May 2025}
+\resumeItemListStart
+\item GPA: 4.00/4.00
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+ \resumeHeadingSkillStart
+  \resumeSubItem{Programming Languages:}
+    {Python, Java, Node.js}
+  \resumeSubItem{Cloud Platforms:}
+    {Google Cloud Platform (Vertex AI, Dialogflow, Cloud Functions)}
+  \resumeSubItem{AI/ML Tools:}
+    {LangChain, CrewAI}
+  \resumeSubItem{Containers \/ DevOps:}
+    {Docker}
+  \resumeSubItem{Web \/ API Development:}
+    {RESTful APIs}
+  \resumeSubItem{Certifications:}
+    {{\href{https://www.credly.com/badges/4f2aa431-8ed9-4b9d-b438-3035ef2f9587/public_url}{Certified Kubernetes Administrator}}, {\href{https://www.credly.com/badges/d963c559-4088-49eb-8046-a8d314ef4a8a/public_url}{Linux Foundation Certified Systems Administrator}}, {\href{https://www.credly.com/badges/42af9d96-f66b-48ad-a771-5448d22b3b47/public_url}{HashiCorp Certified: Terraform Associate}}, {\href{https://www.credly.com/badges/c8ed5fc8-7ae0-4e7e-8b24-c97279288ab5/public_url}{AWS Certified Solutions Architect – Associate}}}
+ \resumeHeadingSkillEnd
+
+\section{\textbf{Experience}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+  \resumeSubheading
+      {Softwise Solutions}{Remote}
+      {Conversational AI / Agent Engineer}{Apr 2021 - Apr 2023}
+      \resumeItemListStart
+        \item Designed and implemented modular, scalable multi-agent workflows for the Pavillio mobile nursing platform using ADK orchestration primitives (Sequential, Parallel, Loop LLM-driven routing) to coordinate across microservices such as \textbf{Cashe Billing}, \textbf{Cashe Claims Processing}, \textbf{Cashe EVV v2}, and \textbf{Cashe Communication}
+        \item Built and tuned conversational agents on \textbf{Vertex AI Dialogflow}, defining intents, entities and session states for nurse-facing flows; developed webhook backends in \textbf{Python} (Cloud Functions) to drive dynamic responses by querying \textbf{Cashe Analytics}, \textbf{Cashe Careplan} and \textbf{Cashe Exchange V2} REST APIs
+        \item Containerized agent components and tooling with \textbf{Docker} and deployed across \textbf{Cloud Run} and \textbf{Cloud Functions}, integrating with EC2-hosted Pavillio services (Salsa, Cashe Exports) and ensuring consistent CI/CD deployments for web and mobile interfaces (Cashe Spa UI/Dashboard/Subscription)
+        \item Integrated custom tools and third-party libraries (e.g., \textbf{LangChain}, CrewAI, Search, Code Exec) into agent pipelines and used ADK evaluation primitives plus \textbf{Google Cloud Logging} and Dialogflow Debug Console to instrument, debug and iterate on NLU accuracy, fallback handling and session management
+        \item Implemented secure webhook patterns, authentication and session/state management, applied agent safety controls and monitoring to ensure trustworthy behavior for healthcare workflows, and collaborated with SREs to meet compliance and observability requirements
+      \resumeItemListEnd 
+\resumeSubHeadingListEnd
+%End of experience section
+
+\vspace{-6mm}
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {Dialogflow / Vertex AI Conversational Agent with Webhooks}
+  {Python, Google Cloud Functions, Dialogflow CX, Vertex AI, RESTful Webhooks, Google Cloud Logging}
+  {}
+  {}
+\resumeItemListStart
+  \item Implemented a Dialogflow CX agent with defined intents, entities, and session state; developed Python Cloud Function webhooks to generate dynamic responses, perform backend integrations, and handle NLU fallbacks and session management.
+  \item Integrated Vertex AI for enhanced NLU, used Cloud Logging and Dialogflow Debug Console for observability, and added safety/fallback patterns to ensure trustworthy agent behavior.
+\resumeItemListEnd
+
+\resumeProject
+  {Multi-Agent Orchestration Framework (ADK-based)}
+  {Python, ADK orchestration primitives, LangChain, Multi-Agent Coordination, Sequential/Parallel/Loop Routing, Tool Integration}
+  {}
+  {}
+\resumeItemListStart
+  \item Built a modular multi-agent framework using ADK primitives (Sequential, Parallel, Loop) and LangChain for LLM-driven routing and tool orchestration (Search, Code Exec), enabling hierarchical delegation and scalable agent workflows.
+  \item Implemented evaluation hooks and safety policies, instrumented per-agent metrics for automatic assessment, and designed fallbacks and retry strategies to improve NLU accuracy and robustness.
+\resumeItemListEnd
+
+\resumeProject
+  {Serverless Agent API and Deployment on GCP}
+  {Python, Cloud Run, Cloud Functions, RESTful API, Terraform, GitHub Actions (CI/CD), Firestore}
+  {}
+  {}
+\resumeItemListStart
+  \item Developed a serverless REST API to route client requests to Cloud Run agents and Cloud Function webhooks; used Terraform for infra-as-code and GitHub Actions to automate testing, deployment, and rollbacks across environments.
+  \item Implemented session persistence with Firestore, authentication, health-check endpoints, and automated deployment pipelines to support web and mobile integrations with minimal manual intervention.
+\resumeItemListEnd
+
+\resumeProject
+  {Multi-Agent gRPC Orchestrator with Containerization}
+  {Python, gRPC, Docker, Kubernetes (GKE), Pub/Sub, Multi-threading, Monitoring}
+  {}
+  {}
+\resumeItemListStart
+  \item Designed a gRPC-based orchestrator to coordinate concurrent agents, leveraging Pub/Sub for async messaging and multi-threading to handle high-throughput request routing and hierarchical coordination.
+  \item Containerized agents with Docker and deployed to GKE/Cloud Run, integrated Google Cloud Logging and Prometheus for monitoring and debugging, and ensured consistent deployments across platforms.
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+%End of projects section
+\vspace{-6mm}
+
+
+
+
+\end{document}
