@@ -1,0 +1,277 @@
+
+
+
+\documentclass[a4paper,10pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,0}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{Mohammed Omair Mohiuddin}}
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    469-774-3039 | \href{mailto:mohammedomair07@gmail.com}{mohammedomair07@gmail.com} | 
+    \href{https://mohdomair.netlify.app/}{mohdomair.netlify.app/}
+    }
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/mohammed-omair/}{linkedin.com/in/mohammed-omair/} | 
+    \socialicon{\faGithub} \href{https://github.com/Mohammed-Omair}{github.com/Mohammed-Omair}
+    }
+\end{center}
+
+\vspace{-4mm}
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{University of Texas at Arlington}{Arlington, U.S}
+{Master of Science in Computer Science}{May 2025}
+\resumeItemListStart
+\item GPA: 4.00/4.00
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+ \resumeHeadingSkillStart
+  \resumeSubItem{Programming Languages:}
+    {Python}
+  \resumeSubItem{Containers  Virtualization:}
+    {Docker, Singularity}
+  \resumeSubItem{Big Data  Analytics:}
+    {Databricks}
+  \resumeSubItem{Platforms  Tools:}
+    {Git, Linux}
+  \resumeSubItem{GPU Computing:}
+    {CUDA}
+  \resumeSubItem{Certifications:}
+    {{\href{https://www.credly.com/badges/4f2aa431-8ed9-4b9d-b438-3035ef2f9587/public_url}{Certified Kubernetes Administrator}}, {\href{https://www.credly.com/badges/d963c559-4088-49eb-8046-a8d314ef4a8a/public_url}{Linux Foundation Certified Systems Administrator}}, {\href{https://www.credly.com/badges/42af9d96-f66b-48ad-a771-5448d22b3b47/public_url}{HashiCorp Certified: Terraform Associate}}, {\href{https://www.credly.com/badges/c8ed5fc8-7ae0-4e7e-8b24-c97279288ab5/public_url}{AWS Certified Solutions Architect  Associate}}}
+ \resumeHeadingSkillEnd
+%End of skills section
+
+\section{\textbf{Experience}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+  \resumeSubheading
+      {Softwise Solutions}{Remote}
+      {Research Software Engineer — Clinical NLP Specialty}{Apr 2021 - Apr 2023}
+      \resumeItemListStart
+        \item Designed and implemented end-to-end clinical NLP pipelines to extract structured events (NER, \textbf{negation detection}, \textbf{temporal reasoning}, phenotyping) from unstructured mobile‑nurse notes and claims data for the Pavillio platform, integrating outputs with microservices such as \textbf{Cashe Claims Processing}, \textbf{Cashe EVV v2}, and \textbf{Cashe Billing} in a \textbf{HIPAA}-compliant environment
+        \item Adapted and fine-tuned large language models and transformer-based architectures for diagnosis prediction, risk stratification, and domain-specific information extraction using \textbf{PyTorch} / \textbf{Hugging Face}; implemented prompt engineering, calibration, and interpretability checks to ensure clinical robustness and reproducibility
+        \item Built scalable, secure data processing stacks on \textbf{Databricks} and Linux-based clusters to analyze massive clinical note corpora; managed data versioning and model lifecycle with \textbf{MLflow} and \textbf{DVC}, enforcing reproducible experiments and audit trails for downstream research and regulatory review
+        \item Containerized NLP services and automated deployments across EC2 and Kubernetes (EKS) for Pavillio components (e.g., \textbf{Pavillio Salsa}, \textbf{Cashe Exports}, \textbf{Cashe Spa UI}); implemented CI/CD, secrets management, and infrastructure as code using \textbf{Docker}, \textbf{GitHub Actions}, and \textbf{Terraform} to ensure secure, repeatable rollouts
+        \item Partnered closely with clinicians, informatics researchers, and SREs to validate model outputs, co-author technical reports, lead code reviews, and deliver short training sessions on clinical NLP best practices, model evaluation, and \textbf{responsible AI} in sensitive-data contexts
+      \resumeItemListEnd 
+\resumeSubHeadingListEnd
+
+\vspace{-6mm}
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {Clinical NLP Pipeline for EHR Phenotyping}
+  {Python, PyTorch, Hugging Face Transformers, spaCy, Snorkel, Databricks, MLflow, Docker, HIPAA-compliant Cloud}
+  {}
+  {}
+\resumeItemListStart
+  \item Designed and implemented an end-to-end clinical NLP pipeline to perform NER, negation detection, temporal reasoning, and phenotyping on unstructured EHR notes; included de-identification, secure data handling, and scalable batch processing on Databricks.
+  \item Built reproducible training and evaluation workflows (MLflow, Databricks jobs, Docker) to fine-tune domain-specific Transformer models, instrumented metrics for calibration/robustness, and integrated model versioning and audit logging for regulatory compliance.
+\resumeItemListEnd
+
+\resumeProject
+  {Adaptation and Evaluation of LLMs for Clinical Question Answering}
+  {Python, Hugging Face, PEFT/LoRA, Prompt Engineering, Optimization, Evaluation Frameworks, Explainability}
+  {}
+  {}
+\resumeItemListStart
+  \item Adapted and low-resource fine-tuned foundation LLMs for clinical QA and diagnosis prediction using adapter-based fine-tuning and prompt engineering, achieving improved factuality and reduced hallucination on held-out clinical benchmarks.
+  \item Developed a rigorous evaluation and benchmarking suite (accuracy, calibration, adversarial tests, uncertainty estimates) and added interpretability tooling (saliency/SHAP) plus guidelines for safe prompt design in sensitive clinical contexts.
+\resumeItemListEnd
+
+\resumeProject
+  {Secure Clinical Note Extraction API}
+  {Python, FastAPI, Docker, Kubernetes, Terraform, GitHub Actions, PostgreSQL, Encryption, CI/CD}
+  {}
+  {}
+\resumeItemListStart
+  \item Implemented a HIPAA-aware REST API to extract structured clinical concepts (diagnoses, medications, timelines) from notes, with encryption-at-rest/in-transit, RBAC, audit trails, and containerized deployments for on-prem and cloud environments.
+  \item Engineered automated CI/CD and infrastructure-as-code pipelines (GitHub Actions + Terraform) to validate, test, and deploy model and service updates with unit/integration tests and canary rollouts to ensure reproducibility and reliability.
+\resumeItemListEnd
+
+\resumeProject
+  {Open-Source Clinical NLP Toolkit and Reproducible Templates}
+  {Python, spaCy/scispaCy, Transformers, pytest, Sphinx, PyPI packaging, Tox, CI}
+  {}
+  {}
+\resumeItemListStart
+  \item Authored a modular toolkit providing standardized components for clinical NER, negation detection, and structured output schemas, designed for easy integration into research pipelines and secure compute environments.
+  \item Packaged the toolkit for PyPI with full test coverage, documentation, and example reproducible experiment templates (data handling, training scripts, evaluation), enabling adoption and extension by research and clinical teams.
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+%End of projects section
+\vspace{-6mm}
+
+
+
+
+\end{document}
