@@ -1,0 +1,273 @@
+
+
+
+\documentclass[a4paper,10pt]{article}
+
+% Package imports
+\usepackage{latexsym}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{ragged2e}
+\usepackage[empty]{fullpage}
+\usepackage{wrapfig}
+\usepackage{lipsum}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{geometry}
+\usepackage{marvosym}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{cfr-lm}
+\usepackage[T1]{fontenc}
+\usepackage{fontawesome}
+
+% Color definitions
+\definecolor{darkblue}{RGB}{0,0,0}
+
+% Page layout
+\setlength{\multicolsep}{0pt} 
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\geometry{left=1.4cm, top=0.8cm, right=1.2cm, bottom=1cm}
+\setlength{\footskip}{5pt} % Addressing fancyhdr warning
+
+% Hyperlink setup (moved after fancyhdr to address warning)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=darkblue,
+    filecolor=darkblue,
+    urlcolor=darkblue,
+}
+
+% Custom box settings
+\usepackage[most]{tcolorbox}
+\tcbset{
+    frame code={},
+    center title,
+    left=0pt,
+    right=0pt,
+    top=0pt,
+    bottom=0pt,
+    colback=gray!20,
+    colframe=white,
+    width=\dimexpr\textwidth\relax,
+    enlarge left by=-2mm,
+    boxsep=4pt,
+    arc=0pt,outer arc=0pt,
+}
+
+% URL style
+\urlstyle{same}
+
+% Text alignment
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Section formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-7pt}]
+
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item{
+    \textbf{#1}{\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+
+\newcommand{\resumePOR}[3]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1}\hspace{0.3mm}#2 & \textit{\small{#3}} 
+    \end{tabular*}
+    \vspace{-2mm}
+}
+
+\newcommand{\resumeSubheading}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#4}} \\
+        \textit{\footnotesize{#3}} &  \footnotesize{#2}\\
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeProject}[4]{
+\vspace{0.5mm}\item
+    \begin{tabular*}{0.98\textwidth}[t]{l@{\extracolsep{\fill}}r}
+        \textbf{#1} & \textit{\footnotesize{#3}} \\
+        \footnotesize{\textit{#2}} & \footnotesize{#4}
+    \end{tabular*}
+    \vspace{-2.4mm}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemi}{$\vcenter{\hbox{\tiny$\bullet$}}$}
+\renewcommand{\labelitemii}{$\vcenter{\hbox{\tiny$\circ$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm]}
+\newcommand{\resumeHeadingSkillStart}{\begin{itemize}[leftmargin=*,itemsep=1.7mm, rightmargin=2ex]}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=*,labelsep=1mm,itemsep=0.5mm]}
+
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}\vspace{2mm}}
+\newcommand{\resumeHeadingSkillEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-2mm}}
+\newcommand{\cvsection}[1]{%
+\vspace{2mm}
+\begin{tcolorbox}
+    \textbf{\large #1}
+\end{tcolorbox}
+    \vspace{-4mm}
+}
+
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}%
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}%
+\newcolumntype{C}{>{\centering\arraybackslash}X}%
+
+% Commands for icon sizing and positioning
+\newcommand{\socialicon}[1]{\raisebox{-0.05em}{\resizebox{!}{1em}{#1}}}
+\newcommand{\ieeeicon}[1]{\raisebox{-0.3em}{\resizebox{!}{1.3em}{#1}}}
+
+% Font options
+\newcommand{\headerfonti}{\fontfamily{phv}\selectfont} % Helvetica-like (similar to Arial/Calibri)
+\newcommand{\headerfontii}{\fontfamily{ptm}\selectfont} % Times-like (similar to Times New Roman)
+\newcommand{\headerfontiii}{\fontfamily{ppl}\selectfont} % Palatino (elegant serif)
+\newcommand{\headerfontiv}{\fontfamily{pbk}\selectfont} % Bookman (readable serif)
+\newcommand{\headerfontv}{\fontfamily{pag}\selectfont} % Avant Garde-like (similar to Trebuchet MS)
+\newcommand{\headerfontvi}{\fontfamily{cmss}\selectfont} % Computer Modern Sans Serif
+\newcommand{\headerfontvii}{\fontfamily{qhv}\selectfont} % Quasi-Helvetica (another Arial/Calibri alternative)
+\newcommand{\headerfontviii}{\fontfamily{qpl}\selectfont} % Quasi-Palatino (another elegant serif option)
+\newcommand{\headerfontix}{\fontfamily{qtm}\selectfont} % Quasi-Times (another Times New Roman alternative)
+\newcommand{\headerfontx}{\fontfamily{bch}\selectfont} % Charter (clean serif font)
+
+\begin{document}
+\headerfontiii
+
+% Header
+\begin{center}
+    {\Huge\textbf{Mohammed Omair Mohiuddin}}
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    469-774-3039 | \href{mailto:mohammedomair07@gmail.com}{mohammedomair07@gmail.com} | 
+    \href{https://mohdomair.netlify.app/}{mohdomair.netlify.app/}
+    }
+\end{center}
+\vspace{-6mm}
+
+\begin{center}
+    \small{
+    \socialicon{\faLinkedin} \href{https://www.linkedin.com/in/mohammed-omair/}{linkedin.com/in/mohammed-omair/} | 
+    \socialicon{\faGithub} \href{https://github.com/Mohammed-Omair}{github.com/Mohammed-Omair}
+    }
+\end{center}
+
+\vspace{-4mm}
+
+\section{\textbf{Education}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeSubheading
+{University of Texas at Arlington}{Arlington, U.S}
+{Master of Science in Computer Science}{May 2025}
+\resumeItemListStart
+\item GPA: 4.00/4.00
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-6mm}
+
+\section{\textbf{Skills}}
+\vspace{-0.4mm}
+ \resumeHeadingSkillStart
+  \resumeSubItem{Programming Languages:}
+    {C++, Java}
+  \resumeSubItem{Markup \\& Web Technologies:}
+    {XML, Web Services}
+  \resumeSubItem{PLM \& CAD Tools:}
+    {Teamcenter, NX, Siemens tools}
+  \resumeSubItem{Certifications:}
+    {{\href{https://www.credly.com/badges/4f2aa431-8ed9-4b9d-b438-3035ef2f9587/public_url}{Certified Kubernetes Administrator}}, {\href{https://www.credly.com/badges/d963c559-4088-49eb-8046-a8d314ef4a8a/public_url}{Linux Foundation Certified Systems Administrator}}, {\href{https://www.credly.com/badges/42af9d96-f66b-48ad-a771-5448d22b3b47/public_url}{HashiCorp Certified: Terraform Associate}}, {\href{https://www.credly.com/badges/c8ed5fc8-7ae0-4e7e-8b24-c97279288ab5/public_url}{AWS Certified Solutions Architect – Associate}}}
+ \resumeHeadingSkillEnd
+
+\section{\textbf{Experience}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+  \resumeSubheading
+      {Softwise Solutions}{Remote}
+      {Software Developer}{Apr 2021 - Apr 2023}
+      \resumeItemListStart
+        \item Developed and maintained core backend services for Pavillio (Cashe Billing, Cashe Claims Processing, Cashe EDI, Cashe EVV v2, Cashe Careplan, Cashe Analytics), implementing business logic and integrations in \textbf{Java} and \textbf{C++} and exposing robust \textbf{REST}/SOAP endpoints for mobile nurse clients and payer systems
+        \item Designed and implemented EDI/EVV and claims pipelines using \textbf{XML}, \textbf{JSON} and secure transport layers; created automated validation and test suites to ensure claim accuracy and regulatory compliance during ingestion and exchange
+        \item Automated CI/CD for Pavillio components (Pavillio Salsa, Cashe Exports on EC2, containerized services) using \textbf{Jenkins}, \textbf{GitHub Actions}, \textbf{Docker}, and \textbf{Kubernetes}/\textbf{EKS}; provisioned and managed AWS infrastructure (EC2, ALB, VPC, IAM) to support cross-environment deployments
+        \item Executed database migration and data integrity efforts for Cashe DB Migration and Claims Register, authoring migration scripts, schema updates, and rollbacks; collaborated with QA to validate migrations and ensure zero-downtime release processes
+        \item Partnered with product owners, domain experts, and SREs across the SDLC—participated in design, code reviews, documentation, and on-call troubleshooting; mapped Pavillio data and integration patterns to PLM-style data models and demonstrated quick uptake of complex enterprise systems concepts (Teamcenter/PLM-relevant fundamentals)
+      \resumeItemListEnd 
+\resumeSubHeadingListEnd
+%End of experience section
+
+\vspace{-6mm}
+
+\section{\textbf{Projects}}
+\vspace{-0.4mm}
+\resumeSubHeadingListStart
+
+\resumeProject
+  {Teamcenter Integration Prototype}
+  {Java, C++, Teamcenter ITK/SOA, XML, RESTful Web Services, SQL, JDBC, Unit Testing}
+  {}
+  {}
+\resumeItemListStart
+  \item Developed a Teamcenter integration prototype using Teamcenter SOA and ITK APIs to synchronize CAD/BOM metadata between PLM and an external engineering database, implementing bidirectional updates and conflict resolution logic
+  \item Implemented XML schema transformations and JDBC-based persistence for engineering metadata, authored unit and integration tests, and produced deployment and troubleshooting documentation to support SDLC handoffs
+\resumeItemListEnd
+
+\resumeProject
+  {Cross-Platform Build and CI for Engineering Tools}
+  {CMake, C++, Java, GitHub Actions, Jenkins, Docker, Static Analysis, Unit Testing, Cross-Platform Builds}
+  {}
+  {}
+\resumeItemListStart
+  \item Engineered CI pipelines with GitHub Actions and Jenkins to build, test, and package C++ and Java engineering tools across Windows and Linux using CMake and Docker, ensuring cross-platform compliance and reproducible artifacts
+  \item Integrated static analysis (clang-tidy / SpotBugs), unit/integration tests, and automated deployment steps, reducing build regressions and accelerating release cycles
+\resumeItemListEnd
+
+\resumeProject
+  {PyGit: A Hands-On Implementation of Git}
+  {Python, File I/O, Data Structures, Version Control Algorithms}
+  {}
+  {{}[\href{https://github.com/Mohammed-Omair/PyGit-A-Hands-On-Implementation-of-Git}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+  \item Developed a lightweight Git-like version control system in Python, implementing core functionalities such as commits, branching, and file tracking to model PLM configuration management and versioned part data handling
+  \item Built a command-line interface mirroring Git workflows (add/commit/branch/log) to enable repeatable change management scenarios and to aid understanding of data provenance in engineering workflows
+\resumeItemListEnd
+
+\resumeProject
+  {gRPC-Based Multi-Threaded System}
+  {Python, Go, gRPC, Multi-threading, Docker, File-based Storage, API Development}
+  {}
+  {{}[\href{https://github.com/Mohammed-Omair/Pet-Adoption-System-gRPC}{\textcolor{darkblue}{\faGithub}}]}
+\resumeItemListStart
+  \item Developed a gRPC-based multi-threaded service in Python and Go to efficiently process concurrent client requests, demonstrating design patterns applicable to PLM server-client integrations and high-throughput data services
+  \item Containerized the client-server architecture using Docker, implemented integration tests and structured logging to ensure reliable deployment and simplify debugging in multi-threaded environments
+\resumeItemListEnd
+
+\resumeSubHeadingListEnd
+%End of projects section
+\vspace{-6mm}
+
+
+
+
+\end{document}
